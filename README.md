@@ -6,6 +6,11 @@ A static ecommerce storefront built with HTML, CSS, and JavaScript.
 
 - Responsive product catalog
 - Search and category filtering
+- Product detail pages
+- Product color options
+- Discount pricing
+- Similar product suggestions
+- Demo return request flow
 - Add-to-cart drawer
 - Quantity controls
 - Checkout summary

@@ -35,7 +35,8 @@ a {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -80,6 +81,10 @@ select {
 }
 
 .nav a:hover {
+  color: var(--primary);
+}
+
+.nav a[aria-current="page"] {
   color: var(--primary);
 }
 
@@ -256,15 +261,94 @@ main {
 }
 
 .section-heading h2,
-.checkout h2 {
+.checkout h2,
+.page-hero h1 {
   margin: 0;
   font-size: clamp(1.8rem, 3vw, 2.8rem);
+}
+
+.page-hero {
+  display: grid;
+  gap: 14px;
+  padding: 58px 0 34px;
+}
+
+.page-hero h1 {
+  max-width: 780px;
+}
+
+.page-hero p:not(.eyebrow) {
+  max-width: 680px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.7;
+}
+
+.split-page {
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: start;
+  gap: 28px;
+}
+
+.stat-panel,
+.support-panel,
+.contact-form,
+.checkout-form,
+.content-grid article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.stat-panel {
+  display: grid;
+  gap: 8px;
+  padding: 22px;
+}
+
+.stat-panel strong {
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+.stat-panel span {
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 28px 0 68px;
+}
+
+.content-grid article {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+}
+
+.content-grid h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.content-grid p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+}
+
+.page-grid {
+  margin-bottom: 68px;
 }
 
 .product-card {
@@ -363,6 +447,83 @@ main {
   padding: 34px;
   border-radius: 8px;
   background: #e9f1ed;
+}
+
+.checkout-page {
+  margin-top: 10px;
+}
+
+.checkout-form {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+}
+
+.checkout-form h2 {
+  font-size: 1.5rem;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 22px;
+  align-items: start;
+  margin-bottom: 68px;
+}
+
+.contact-form {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+}
+
+.contact-form label,
+.checkout-form label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.contact-form input,
+.contact-form textarea,
+.checkout-form input,
+.checkout-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 14px;
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.form-note {
+  min-height: 24px;
+  margin: 0;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.support-panel {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+}
+
+.support-panel article {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.support-panel article:last-child {
+  border-bottom: 0;
+}
+
+.support-panel span {
+  color: var(--muted);
 }
 
 .summary-panel {
@@ -497,12 +658,15 @@ main {
 
 @media (max-width: 900px) {
   .hero,
-  .checkout {
+  .checkout,
+  .split-page,
+  .contact-layout {
     grid-template-columns: 1fr;
   }
 
   .product-grid,
-  .features {
+  .features,
+  .content-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -529,7 +693,8 @@ main {
   .hero-visual,
   .toolbar,
   .product-grid,
-  .features {
+  .features,
+  .content-grid {
     grid-template-columns: 1fr;
   }
 

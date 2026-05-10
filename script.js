@@ -289,8 +289,14 @@ const total = document.querySelector("#total");
 const drawerTotal = document.querySelector("#drawerTotal");
 const checkoutButton = document.querySelector("#checkoutButton");
 const drawerCheckout = document.querySelector("#drawerCheckout");
+const loginForm = document.querySelector("#loginForm");
+const registerForm = document.querySelector("#registerForm");
+const loginNote = document.querySelector("#loginNote");
+const registerNote = document.querySelector("#registerNote");
+const accountDashboard = document.querySelector("#accountDashboard");
 
 let cart = JSON.parse(localStorage.getItem("mercato-cart") || "{}");
+let account = JSON.parse(localStorage.getItem("mercato-account") || "null");
 let selectedDetailColor = null;
 
 const money = (value) =>
@@ -419,7 +425,7 @@ function renderCart() {
             <article class="cart-item">
               <div>
                 <h3>${product.name}</h3>
-                <p>${money(product.price)} each${color ? ` · ${color}` : ""}</p>
+                <p>${money(product.price)} each${color ? ` - ${color}` : ""}</p>
               </div>
               <div class="quantity-controls" aria-label="Quantity controls for ${product.name}">
                 <button type="button" data-decrease="${product.id}" aria-label="Decrease ${product.name}">-</button>
@@ -518,13 +524,73 @@ function renderReturnProducts() {
               <img src="${product.image}" alt="${product.imageAlt}" />
               <span>
                 <strong>${product.name}</strong>
-                <small>${quantity} item${quantity > 1 ? "s" : ""}${color ? ` · ${color}` : ""}</small>
+                <small>${quantity} item${quantity > 1 ? "s" : ""}${color ? ` - ${color}` : ""}</small>
               </span>
             </label>
           `
         )
         .join("")
     : `<p class="summary-empty">Your cart is empty. Add products before starting a demo return.</p>`;
+}
+
+function saveAccount(nextAccount) {
+  account = nextAccount;
+  localStorage.setItem("mercato-account", JSON.stringify(account));
+}
+
+function renderAccountDashboard() {
+  if (!accountDashboard) return;
+
+  const entries = getCartEntries();
+  if (!account) {
+    accountDashboard.innerHTML = `
+      <section class="account-card account-welcome">
+        <h2>Login required</h2>
+        <p>Create an account or login to see customer details, saved cart items, returns, and order tools.</p>
+        <a class="button primary" href="login.html">Login or create account</a>
+      </section>
+    `;
+    return;
+  }
+
+  accountDashboard.innerHTML = `
+    <section class="account-card profile-card">
+      <span class="avatar">${account.name.charAt(0).toUpperCase()}</span>
+      <div>
+        <p class="eyebrow">Signed in</p>
+        <h2>${account.name}</h2>
+        <p>${account.email}</p>
+      </div>
+      <button class="button secondary" type="button" id="logoutButton">Logout</button>
+    </section>
+
+    <section class="account-card">
+      <h2>Recent Activity</h2>
+      <div class="account-list">
+        <article>
+          <strong>Saved cart</strong>
+          <span>${entries.length} product type${entries.length === 1 ? "" : "s"} in cart</span>
+        </article>
+        <article>
+          <strong>Demo order status</strong>
+          <span>No paid orders yet. Checkout is currently a demo flow.</span>
+        </article>
+        <article>
+          <strong>Returns</strong>
+          <span>Start a return request from the Returns page.</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="account-card">
+      <h2>Quick Actions</h2>
+      <div class="quick-actions">
+        <a class="button primary" href="products.html">Continue shopping</a>
+        <a class="button secondary" href="checkout.html">Review cart</a>
+        <a class="button secondary" href="returns.html">Start return</a>
+      </div>
+    </section>
+  `;
 }
 
 function openCart() {
@@ -621,6 +687,53 @@ if (returnForm) {
   });
 }
 
+if (registerForm) {
+  registerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(registerForm);
+    const nextAccount = {
+      name: data.get("name").trim(),
+      email: data.get("email").trim().toLowerCase(),
+      password: data.get("password"),
+      createdAt: new Date().toISOString(),
+    };
+    saveAccount(nextAccount);
+    registerForm.reset();
+    if (registerNote) registerNote.textContent = "Account created. Redirecting to dashboard...";
+    setTimeout(() => {
+      window.location.href = "account.html";
+    }, 600);
+  });
+}
+
+if (loginForm) {
+  loginForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(loginForm);
+    const email = data.get("email").trim().toLowerCase();
+    const password = data.get("password");
+
+    if (!account || account.email !== email || account.password !== password) {
+      if (loginNote) loginNote.textContent = "No matching demo account found. Create an account first.";
+      return;
+    }
+
+    if (loginNote) loginNote.textContent = "Login successful. Redirecting...";
+    setTimeout(() => {
+      window.location.href = "account.html";
+    }, 500);
+  });
+}
+
+document.addEventListener("click", (event) => {
+  const logoutButton = event.target.closest("#logoutButton");
+  if (!logoutButton) return;
+  localStorage.removeItem("mercato-account");
+  account = null;
+  renderAccountDashboard();
+});
+
 renderProducts();
 renderProductDetail();
 renderCart();
+renderAccountDashboard();

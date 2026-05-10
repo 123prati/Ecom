@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Review your Mercato cart and checkout." />
-    <title>Checkout | Mercato</title>
+    <meta name="description" content="Mercato customer account dashboard." />
+    <title>Account | Mercato</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -18,8 +18,8 @@
         <a href="about.html">About</a>
         <a href="returns.html">Returns</a>
         <a href="contact.html">Contact</a>
-        <a href="account.html">Account</a>
-        <a href="checkout.html" aria-current="page">Checkout</a>
+        <a href="account.html" aria-current="page">Account</a>
+        <a href="checkout.html">Checkout</a>
       </nav>
       <button class="cart-button" type="button" id="cartButton" aria-label="Open cart">
         <span>Cart</span>
@@ -29,45 +29,12 @@
 
     <main>
       <section class="page-hero">
-        <p class="eyebrow">Checkout</p>
-        <h1>Review your order.</h1>
-        <p>Your cart is saved in this browser so visitors can move between pages without losing selections.</p>
+        <p class="eyebrow">Account</p>
+        <h1>Your Mercato dashboard.</h1>
+        <p>View profile details, recent order activity, account benefits, and quick actions.</p>
       </section>
 
-      <section class="checkout checkout-page" id="checkout">
-        <div class="checkout-form">
-          <h2>Delivery Details</h2>
-          <label>
-            <span>Full name</span>
-            <input type="text" placeholder="Your name" />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" placeholder="you@example.com" />
-          </label>
-          <label>
-            <span>Address</span>
-            <textarea rows="4" placeholder="Street, city, region"></textarea>
-          </label>
-        </div>
-
-        <div class="summary-panel">
-          <div id="summaryItems" class="summary-items"></div>
-          <div class="summary-row">
-            <span>Subtotal</span>
-            <strong id="subtotal">$0.00</strong>
-          </div>
-          <div class="summary-row">
-            <span>Estimated shipping</span>
-            <strong id="shipping">$0.00</strong>
-          </div>
-          <div class="summary-row total">
-            <span>Total</span>
-            <strong id="total">$0.00</strong>
-          </div>
-          <button class="button primary checkout-button" type="button" id="checkoutButton">Checkout</button>
-        </div>
-      </section>
+      <section class="account-layout" id="accountDashboard"></section>
     </main>
 
     <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
@@ -89,7 +56,7 @@
 
     <footer class="footer">
       <span>Mercato ecommerce demo</span>
-      <span>Checkout</span>
+      <span>Account</span>
     </footer>
     <script src="script.js"></script>
   </body>

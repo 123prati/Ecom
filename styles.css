@@ -624,6 +624,123 @@ main {
   background: var(--surface);
 }
 
+.auth-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(360px, 1.1fr);
+  gap: 32px;
+  align-items: start;
+  padding: 58px 0 68px;
+}
+
+.auth-copy {
+  display: grid;
+  gap: 14px;
+}
+
+.auth-copy h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+.auth-copy p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.auth-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.auth-form,
+.account-card {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.auth-form h2,
+.account-card h2 {
+  margin: 0;
+}
+
+.auth-form label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.auth-form input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 14px;
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.account-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: 18px;
+  margin-bottom: 68px;
+}
+
+.account-welcome {
+  grid-column: 1 / -1;
+  max-width: 620px;
+}
+
+.profile-card {
+  grid-column: 1 / -1;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+.profile-card p,
+.account-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.avatar {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--primary);
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.account-list,
+.quick-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.account-list article {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.account-list span {
+  color: var(--muted);
+}
+
 .features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -868,7 +985,14 @@ main {
   .split-page,
   .contact-layout,
   .detail-layout,
-  .return-layout {
+  .return-layout,
+  .auth-layout,
+  .auth-panels,
+  .account-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-card {
     grid-template-columns: 1fr;
   }
 

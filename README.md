@@ -11,6 +11,7 @@ A static ecommerce storefront built with HTML, CSS, and JavaScript.
 - Discount pricing
 - Similar product suggestions
 - Demo return request flow
+- Client login and account dashboard
 - Add-to-cart drawer
 - Quantity controls
 - Checkout summary

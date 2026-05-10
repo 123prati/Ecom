@@ -453,8 +453,9 @@ function renderProductDetail() {
 
   productDetail.innerHTML = `
     <section class="detail-layout">
-      <div class="detail-gallery">
+      <div class="detail-gallery" id="detailGallery" style="--selected-product-color: ${product.colors[0].value}">
         <img src="${product.image}" alt="${product.imageAlt}" />
+        <span class="color-preview-label" id="colorPreviewLabel">${selectedDetailColor}</span>
       </div>
       <div class="detail-info">
         <p class="eyebrow">${product.category}</p>
@@ -479,6 +480,7 @@ function renderProductDetail() {
                     class="swatch ${index === 0 ? "selected" : ""}"
                     type="button"
                     data-color="${color.name}"
+                    data-color-value="${color.value}"
                     style="--swatch: ${color.value}"
                     aria-label="Select ${color.name}"
                   ></button>
@@ -635,7 +637,11 @@ document.addEventListener("click", (event) => {
     document.querySelectorAll(".swatch").forEach((item) => item.classList.remove("selected"));
     swatch.classList.add("selected");
     const selectedColor = document.querySelector("#selectedColor");
+    const detailGallery = document.querySelector("#detailGallery");
+    const colorPreviewLabel = document.querySelector("#colorPreviewLabel");
     if (selectedColor) selectedColor.textContent = selectedDetailColor;
+    if (detailGallery) detailGallery.style.setProperty("--selected-product-color", swatch.dataset.colorValue);
+    if (colorPreviewLabel) colorPreviewLabel.textContent = selectedDetailColor;
   }
 
   if (detailAdd) {

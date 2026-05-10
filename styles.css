@@ -479,7 +479,19 @@ main {
 }
 
 .detail-gallery {
+  position: relative;
   overflow: hidden;
+  background: var(--selected-product-color);
+}
+
+.detail-gallery::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--selected-product-color);
+  content: "";
+  mix-blend-mode: color;
+  opacity: 0.32;
 }
 
 .detail-gallery img {
@@ -487,6 +499,19 @@ main {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+}
+
+.color-preview-label {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 1;
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: #fff;
+  background: rgba(23, 33, 29, 0.78);
+  font-size: 0.82rem;
+  font-weight: 900;
 }
 
 .detail-info,

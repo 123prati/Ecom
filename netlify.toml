@@ -1,29 +1,9 @@
 [build]
-  publish = "frontend"
+  publish = "."
 
 [[redirects]]
-  from = "/login"
+  from = "/*"
   to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/signup"
-  to = "/signup.html"
-  status = 200
-
-[[redirects]]
-  from = "/forgot-password"
-  to = "/forgot-password.html"
-  status = 200
-
-[[redirects]]
-  from = "/reset-password"
-  to = "/reset-password.html"
-  status = 200
-
-[[redirects]]
-  from = "/dashboard"
-  to = "/dashboard.html"
   status = 200
 
 [[headers]]

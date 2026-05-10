@@ -1,0 +1,12 @@
+{
+  "name": "mercato-auth-frontend",
+  "version": "1.0.0",
+  "description": "Static frontend for the Mercato authentication flow.",
+  "private": true,
+  "scripts": {
+    "start": "http-server . -p 3000 -c-1 --proxy http://127.0.0.1:3000?"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

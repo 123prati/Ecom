@@ -6,5 +6,7 @@ backend/dev.log
 backend/dev.err
 backend/json-dev.log
 backend/json-dev.err
+frontend/frontend.log
+frontend/frontend.err
 coverage/
 .DS_Store

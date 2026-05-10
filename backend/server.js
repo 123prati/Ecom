@@ -28,7 +28,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5000",
+    origin(origin, callback) {
+      const allowedOrigins = [
+        process.env.CLIENT_URL || "http://localhost:5000",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:5000",
+        "http://127.0.0.1:5000",
+      ];
+
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );

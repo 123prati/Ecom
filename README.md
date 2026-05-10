@@ -98,9 +98,9 @@ Open `index.html` in a browser.
 Use these Netlify settings:
 
 - Build command: leave empty
-- Publish directory: `.`
+- Publish directory: `frontend`
 
-The included `netlify.toml` already sets the publish directory.
+The included `netlify.toml` already sets the publish directory. Netlify static hosting will show the login-first frontend. The Node/Express backend must be deployed separately to a Node host for live API login/signup.
 
 ## Product Photos
 

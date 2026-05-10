@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Mercato</title>
+    <link rel="stylesheet" href="assets/auth.css" />
+  </head>
+  <body>
+    <header class="dashboard-header">
+      <a class="brand" href="dashboard.html">
+        <span class="brand-mark">M</span>
+        <span>Mercato</span>
+      </a>
+      <button class="secondary-button compact" id="logoutButton" type="button">Logout</button>
+    </header>
+
+    <main class="dashboard-shell">
+      <section class="welcome-card" id="welcomeCard">
+        <p class="eyebrow">Account</p>
+        <h1>Loading dashboard...</h1>
+      </section>
+
+      <section class="dashboard-grid">
+        <article>
+          <strong>Your Orders</strong>
+          <span>Track orders, invoices, and delivery updates.</span>
+        </article>
+        <article>
+          <strong>Login & Security</strong>
+          <span>Manage password, OAuth providers, and account access.</span>
+        </article>
+        <article>
+          <strong>Your Addresses</strong>
+          <span>Save shipping addresses for faster checkout.</span>
+        </article>
+        <article>
+          <strong>Returns</strong>
+          <span>Start and review product return requests.</span>
+        </article>
+      </section>
+    </main>
+    <script src="assets/auth.js"></script>
+  </body>
+</html>

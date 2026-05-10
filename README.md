@@ -23,12 +23,12 @@ An ecommerce project with a static storefront plus a full Amazon-style authentic
 The new auth app lives in:
 
 - `frontend/`: HTML, CSS, and JavaScript auth UI
-- `backend/`: Node.js, Express, MongoDB, JWT, bcrypt, Passport OAuth
+- `backend/`: Node.js, Express, JSON-file user storage, JWT, bcrypt, Passport OAuth
 - `backend/routes/`: API routes
 - `backend/controllers/`: request handlers
-- `backend/models/`: MongoDB schemas
+- `backend/models/`: local `users.json` user storage helpers
 - `backend/middleware/`: auth, validation, error handling
-- `backend/config/`: MongoDB and OAuth configuration
+- `backend/config/`: OAuth configuration
 
 ### API Routes
 
@@ -61,13 +61,10 @@ http://localhost:5000
 
 The backend serves `frontend/index.html` as the first page, so the login page opens first.
 
-### MongoDB
+### User Storage
 
-Use a local MongoDB instance or MongoDB Atlas. Set this in `backend/.env`:
-
-```text
-MONGO_URI=mongodb://127.0.0.1:27017/mercato_auth
-```
+The backend does not require MongoDB. Users are stored in `backend/users.json`.
+The file is created automatically when the server starts or when the first auth request runs.
 
 ### OAuth Setup
 
@@ -89,7 +86,7 @@ Facebook:
 - Set a strong `JWT_SECRET`.
 - Set `NODE_ENV=production`.
 - Set `CLIENT_URL` to your deployed frontend URL.
-- Use MongoDB Atlas or a managed MongoDB provider.
+- Replace the JSON file store with a managed database before using real customer data.
 - Configure OAuth callback URLs with your production domain.
 
 ## Run locally

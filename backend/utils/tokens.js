@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 function signToken(user, remember = false) {
   const expiresIn = remember ? process.env.JWT_REMEMBER_EXPIRES_IN || "30d" : process.env.JWT_EXPIRES_IN || "1d";
-  return jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn });
+  return jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn });
 }
 
 function cookieOptions(remember = false) {

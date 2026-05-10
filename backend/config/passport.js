@@ -4,20 +4,17 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/User");
 
 async function findOrCreateOAuthUser({ provider, providerId, email, name }) {
-  let user = await User.findOne({ provider, providerId });
+  let user = await User.findByProvider(provider, providerId);
   if (user) return user;
 
   if (email) {
-    user = await User.findOne({ email });
+    user = await User.findByEmail(email);
     if (user) {
-      user.provider = provider;
-      user.providerId = providerId;
-      await user.save();
-      return user;
+      return User.linkOAuthUser(user.id, { provider, providerId });
     }
   }
 
-  return User.create({
+  return User.createUser({
     name: name || "Mercato Customer",
     email: email || `${providerId}@${provider}.oauth.local`,
     provider,

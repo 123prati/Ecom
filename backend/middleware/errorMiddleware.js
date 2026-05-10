@@ -6,10 +6,10 @@ function notFound(req, res, next) {
 
 function errorHandler(error, _req, res, _next) {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  const duplicateEmail = error.code === 11000 && error.keyPattern?.email;
+  const duplicateEmail = error.statusCode === 409;
 
-  res.status(duplicateEmail ? 409 : statusCode).json({
-    message: duplicateEmail ? "An account with this email already exists." : error.message,
+  res.status(error.statusCode || (duplicateEmail ? 409 : statusCode)).json({
+    message: error.message,
     stack: process.env.NODE_ENV === "production" ? undefined : error.stack,
   });
 }

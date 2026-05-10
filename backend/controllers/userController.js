@@ -1,7 +1,7 @@
 function getDashboard(req, res) {
   res.json({
     user: {
-      id: req.user._id,
+      id: req.user.id,
       name: req.user.name,
       email: req.user.email,
       role: req.user.role,

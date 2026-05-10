@@ -8,17 +8,16 @@ const passport = require("passport");
 const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
-const connectDB = require("./config/db");
 const configurePassport = require("./config/passport");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+const { ensureUsersFile } = require("./models/User");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const frontendPath = path.join(__dirname, "..", "frontend");
 
-connectDB();
 configurePassport();
 
 app.set("trust proxy", 1);
@@ -55,6 +54,15 @@ app.get(["/login", "/signup", "/forgot-password", "/reset-password", "/dashboard
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Mercato auth server running on port ${PORT}`);
+async function startServer() {
+  await ensureUsersFile();
+  app.listen(PORT, () => {
+    console.log(`Mercato auth server running on port ${PORT}`);
+    console.log("Using local JSON user store at backend/users.json");
+  });
+}
+
+startServer().catch((error) => {
+  console.error(`Server startup failed: ${error.message}`);
+  process.exit(1);
 });

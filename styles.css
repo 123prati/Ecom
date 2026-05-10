@@ -205,6 +205,14 @@ main {
     var(--primary);
 }
 
+.feature-tile img {
+  width: 100%;
+  max-height: 176px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
 .feature-tile.large {
   grid-row: span 2;
   min-height: 350px;
@@ -364,6 +372,13 @@ main {
   min-height: 210px;
   place-items: center;
   background: linear-gradient(135deg, var(--tile-a), var(--tile-b));
+}
+
+.product-media img {
+  width: min(86%, 310px);
+  height: 190px;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 18px rgba(23, 33, 29, 0.22));
 }
 
 .product-icon {

@@ -7,6 +7,8 @@ const products = [
     rating: "4.8",
     description: "Noise-reducing headphones with soft ear cups and all-day battery life.",
     initials: "AT",
+    image: "assets/products/headphones.svg",
+    imageAlt: "Illustration of green wireless headphones",
     colors: ["#23443c", "#176f5b"],
   },
   {
@@ -17,6 +19,8 @@ const products = [
     rating: "4.7",
     description: "Adjustable task lighting with warm and cool modes for focused work.",
     initials: "GL",
+    image: "assets/products/lamp.svg",
+    imageAlt: "Illustration of an adjustable desk lamp",
     colors: ["#d95d39", "#e8b84b"],
   },
   {
@@ -27,6 +31,8 @@ const products = [
     rating: "4.9",
     description: "Weather-resistant everyday carry with smart pockets and laptop storage.",
     initials: "ND",
+    image: "assets/products/backpack.svg",
+    imageAlt: "Illustration of a travel backpack",
     colors: ["#22272b", "#61706a"],
   },
   {
@@ -37,6 +43,8 @@ const products = [
     rating: "4.6",
     description: "Compact Bluetooth speaker with crisp sound and a durable outer shell.",
     initials: "SM",
+    image: "assets/products/speaker.svg",
+    imageAlt: "Illustration of a compact Bluetooth speaker",
     colors: ["#176f5b", "#8fb9a8"],
   },
   {
@@ -47,6 +55,8 @@ const products = [
     rating: "4.8",
     description: "Textured cotton throw for sofas, reading chairs, and bedroom layers.",
     initials: "WT",
+    image: "assets/products/throw.svg",
+    imageAlt: "Illustration of a woven cotton throw blanket",
     colors: ["#b85d42", "#f1c27d"],
   },
   {
@@ -57,6 +67,8 @@ const products = [
     rating: "4.7",
     description: "Lightweight fitness watch with health tracking and phone notifications.",
     initials: "PF",
+    image: "assets/products/watch.svg",
+    imageAlt: "Illustration of a smart watch",
     colors: ["#263238", "#4f8f7d"],
   },
 ];
@@ -117,7 +129,7 @@ function renderProducts() {
       (product) => `
         <article class="product-card">
           <div class="product-media" style="--tile-a: ${product.colors[0]}; --tile-b: ${product.colors[1]}">
-            <span class="product-icon">${product.initials}</span>
+            <img src="${product.image}" alt="${product.imageAlt}" loading="lazy" />
           </div>
           <div class="product-body">
             <div class="product-meta">

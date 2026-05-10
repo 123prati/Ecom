@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title">
+  <title id="title">Bluetooth speaker product illustration</title>
+  <rect width="640" height="480" rx="36" fill="#e7f0ed"/>
+  <rect x="132" y="166" width="376" height="174" rx="70" fill="#176f5b"/>
+  <circle cx="244" cy="253" r="62" fill="#102d28"/>
+  <circle cx="244" cy="253" r="30" fill="#8fb9a8"/>
+  <circle cx="398" cy="253" r="62" fill="#102d28"/>
+  <circle cx="398" cy="253" r="30" fill="#8fb9a8"/>
+  <path d="M268 132h104" stroke="#17211d" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="320" cy="132" r="12" fill="#d95d39"/>
+  <path d="M178 366h284" stroke="#e8b84b" stroke-width="18" stroke-linecap="round"/>
+</svg>

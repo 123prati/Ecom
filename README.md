@@ -100,7 +100,15 @@ Use these Netlify settings:
 - Build command: leave empty
 - Publish directory: `frontend`
 
-The included `netlify.toml` already sets the publish directory. Netlify static hosting will show the login-first frontend. The Node/Express backend must be deployed separately to a Node host for live API login/signup.
+The included `netlify.toml` already sets the publish directory. Netlify static hosting will show the login-first frontend.
+
+Important: Netlify is only serving static frontend files in this project. Signup/login API calls require the Node/Express backend. For local testing, run the backend at `http://127.0.0.1:5000` and the frontend at `http://127.0.0.1:3000`.
+
+For production, deploy `backend/` to a Node host such as Render, Railway, Fly.io, or a VPS. Then set `window.MERCATO_API_URL` in `frontend/assets/config.js`, for example:
+
+```js
+window.MERCATO_API_URL = "https://your-backend-domain.com/api";
+```
 
 ## Product Photos
 

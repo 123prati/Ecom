@@ -1,4 +1,6 @@
-const API_BASE = window.location.port === "3000" ? "http://127.0.0.1:5000/api" : "/api";
+const API_BASE =
+  window.MERCATO_API_URL ||
+  (window.location.port === "3000" ? "http://127.0.0.1:5000/api" : "/api");
 
 function getFormData(form) {
   return Object.fromEntries(new FormData(form).entries());
@@ -48,15 +50,24 @@ function validateAuthForm(form) {
 }
 
 async function apiRequest(path, options = {}) {
-  const response = await fetch(`${API_BASE}${path}`, {
-    credentials: "include",
-    headers: { "Content-Type": "application/json", ...(options.headers || {}) },
-    ...options,
-  });
+  let response;
+
+  try {
+    response = await fetch(`${API_BASE}${path}`, {
+      credentials: "include",
+      headers: { "Content-Type": "application/json", ...(options.headers || {}) },
+      ...options,
+    });
+  } catch (_error) {
+    throw new Error("The authentication server is not reachable. Start the backend locally or deploy it and set MERCATO_API_URL.");
+  }
 
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(data.message || "Something went wrong.");
+    if (response.status === 404 && API_BASE === "/api") {
+      throw new Error("The authentication API is not deployed on this Netlify site. Deploy the backend separately or use the local backend at http://127.0.0.1:5000.");
+    }
+    throw new Error(data.message || `Request failed with status ${response.status}.`);
   }
   return data;
 }

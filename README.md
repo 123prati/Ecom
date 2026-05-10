@@ -24,3 +24,14 @@ Use these Netlify settings:
 - Publish directory: `.`
 
 The included `netlify.toml` already sets the publish directory.
+
+## Product Photos
+
+Product photos are saved locally under `assets/products/`.
+
+- Headphones: https://unsplash.com/photos/gehzL37x6zY
+- Desk lamp: https://unsplash.com/photos/4Zk8kiqA8Wk
+- Backpack: https://unsplash.com/photos/_H0fjILH5Vw
+- Speaker: https://unsplash.com/photos/-WB52caEpmI
+- Throw blanket: https://unsplash.com/photos/0xg8ip9ayaA
+- Smart watch: https://unsplash.com/photos/Q60A9HDYbkI

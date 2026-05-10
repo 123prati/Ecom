@@ -66,7 +66,7 @@ The backend serves `frontend/index.html` as the first page, so the login page op
 Use a local MongoDB instance or MongoDB Atlas. Set this in `backend/.env`:
 
 ```text
-MONGODB_URI=mongodb://127.0.0.1:27017/mercato_auth
+MONGO_URI=mongodb://127.0.0.1:27017/mercato_auth
 ```
 
 ### OAuth Setup
